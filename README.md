@@ -1,4 +1,4 @@
-![alt text]([http://url/to/img.png](https://zillow.mediaroom.com/logos))
+![Zillow](zillow_logo.png)
 # Logerror Regression Project With Clustering Methods: Zillow Data Set
 
 ___
