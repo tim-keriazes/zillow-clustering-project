@@ -1,4 +1,4 @@
-![Zillow](zillow_logo.png)
+
 # Logerror Regression Project With Clustering Methods: Zillow Data Set
 
 ___
