@@ -86,7 +86,12 @@ ___
 |   `yearbuilt`                                   |    The Year the principal residence was built                                                                           |                                        | float64 /  int64 |
 | `home_value` / `taxvaluedollarcnt`              |   The total tax assessed value of the parcel                                                                            |                                        | float64          |
 | `taxamount`                           | The total property tax assessed for that assessment year                                                                |                                        | float64          |
-| `sqft_room_ratio`                                        | The ratio of sqft to total number of bedrooms and bathrooms.                                                                                     |                                        | int64           |
+| `sqft_room_ratio`                                        | The ratio of sqft to total number of bedrooms and bathrooms.                                                                                     |                                        | int64       |
+|'luxury_score'                | count of pool, car garagem bedrooms, bathrooms, aircondition | int64|
+|
+|
+|
+|
 
 ___
 # <a name="workflow"></a>Workflow
