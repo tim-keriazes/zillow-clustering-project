@@ -1,84 +1,78 @@
 
-# Regression Project: Zillow
+# Logerror Regression Project With Clustering Methods: Zillow Data Set
 
 ___
 ___
 
 # <a name="scenario"></a>Scenario
-Utilizing the 2017 Zillow data set, I set out to build a model that would predict the values of single family homes, examining the correlation between the data points and our target variable (home_value). I will identify critical features that can be used in a regression model to predict home value. 
+Utilizing the 2017 Zillow data set, I set out to build a model that would predict the logerror of single family homes, examining the correlation between the data points and our target variable (logerror). I will identify critical features that can be used in a regression model to predict logerror as well as incorporating feature engineering utilizing clustering methods. 
 ___
 
 # <a name="project-planning"></a>Project Planning
 ### Goal:
-The goal for this project is to create a model that will accurately predict a home's value determined by the county's Appraisal District. To do so, I will have to identify which of the various features are drivers to this end, and implement them into a machine learning regression model. 
+The goal for this project is to create a model that will accurately predict a home's logerror determined by the county's Appraisal District. To do so, I will have to identify which of the various features are drivers to this end, and implement them into a machine learning regression model. 
 
 ### Initial Hypotheses:
 
 >$Hypothesis_{1}$
 >
-> There is a relationship between square footage and home value.
+> There is a relationship between county location and logerror.
 
 
 >$Hypothesis_{2}$
 >
-> There is a correlation between number of bathrooms and bedrooms and home value.
+> There is a correlation between number of luxury home items such as pool, garage, number of rooms and square footage.
 
 ### Project Planning Initial Thoughts:
-- My initial thoughts were that there would be a direct relationship to the total square footage of the property and its appraised value.
-- Additionally, I believe there to be a correlation, not just to the number of bedrooms and bathrooms, but also to a ratio of square footage per number of rooms
+- My initial thoughts were that there would be a direct relationship to the location of the property and its logerror.
+- Additionally, I believe there to be a correlation, not just to the number of bedrooms and bathrooms, but also to a ratio of square footage per number of rooms and what I called luxury items such as a pool, garage, air conditioning etc.
 - To explore this I created a new feature:
-    - `sqft_room_ratio`: 'sqft' / ('bedrooms' + 'bathrooms')
+    - df['luxury_score'] = (df['poolcnt']+df['garagecarcnt']+df['bedrooms']+df['bathrooms']+df['airconditioning_encoded'])
 ___
 # <a name="key-findings"></a>Key Findings
 
 ## Exploration Takeaways
-After removing home_value outliers, especially those homes with more than 6 bedrooms, 6 bathrooms, over a value of $1,500,000, and with a square footage of more than 15,000 sqft. The majority of homes are in the bottom 20% of the overall square footage and bottom 45% of home_value. 
+After removing data set outliers, especially those homes with more than 6 bedrooms, 7 bathrooms, over a value of $3,000,000, and with a square footage of more than 10,000 sqft. The majority of homes are in the bottom 20% of the overall square footage and bottom 45% of home_value. 
 
-Mean home value = $380,196
-Mean square footage = 1774
+Mean logerror = 0.01816
+RMSE baseline = .175
+Best model = Tweedie Regressor with RMSE .175
 
 ___
 # <a name="tested-hypotheses"></a>Tested Hypotheses
 
->$Hypothesis_{1}$
->
-> $H_{0}$: No correlation between square footage and home value.
->
-> $H_{a}$: There is a correlation between square footage and home value.
+## Key Takeaways/Summary of stats tests
 
+Hypothesis Testing
+Tested Hypotheses
 
->$Hypothesis_{2}$
->
-> $H_{0}$: No correlation between number of bathrooms and home value.
->
-> $H_{a}$: There is a correlation between bathrooms and home value.
+### 1. Ho: Log error will be the same across all quarters observed.
+    Ha: Log error will vary based quarter observed.
+    -We reject the null hypothesis.
 
+### 2. Ho: Log error will be the same across all three counties.
+    Ha: Log error will vary based on county.
+    -We reject the null hypothesis.
 
->$Hypothesis_{3}$
->
-> $H_{0}$: No correlation between number of bedrooms and home value.
->
-> $H_{a}$: There is a correlation between bathrooms and home value.
+### 3. Ho: There is no correlation between tax rate and log error.
+    Ha: There is a relationship between tax rate and log error.
+    -We fail to reject the null hypothesis. There is a relationship between tax rate and log error
 
+### 4. Ho: There is no correlation between longitude and log error.
+    Ha: There is a relationship between longitude and log error.
+    -We reject the null hypothesis. Strong relationship between longitude and logerror
 
->$Hypothesis_{4}$
->
-> $H_{0}$: No correlation between square footage per room ratio and home value.
->
-> $H_{a}$: There is a correlation between square footage per room ratio and home value.
-___
-# <a name="take-aways"></a>Take Aways
-A more robust combination of cleaned and wrangeled data/features worked best with the regression models.
+### 5. Ho: There is no correlation between cost per sqft and log error.
+    Ha: There is a relationship between cost per sqft and log error.
+    -We reject the null hypothesis. Strong relationship between cost_per_sqft and logerror
+
+### 6. Ho: There is no correlation between luxury_sqft_per_age and log error.
+    Ha: There is a relationship between luxury_sqft_per_age and log error.
+   -We reject the null hypothesis. Strong relationship between luxury_sqft_per_age and log error.
 
 In Summary:
-Following the evaluation of the different models using my selected features, I found that the best performing model was the Polynomial Regressor with degrees = 2
-It performs best when above the median home value.
-
-Mean home value = $380,196
-Mean square footage = 1774
-Mean Bedrooms = 3
-Mean Bathrooms = 2
-
+Following the evaluation of the different models using my selected features, I found that the best performing model was the Tweedie Regressor
+It performs best when at the median logerror.
 
 ___
 # <a name="data-dictionary"></a>Data Dictionary
@@ -104,7 +98,9 @@ ___
 1. explore-data
     - hypothesis-testing
 1. evaluate-data
-1. modeling
+1. Develop clustering models
+    -add as features
+3. modeling
     - identify-baseline
     - train-validate
     - test
