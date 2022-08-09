@@ -87,11 +87,17 @@ ___
 | `home_value` / `taxvaluedollarcnt`              |   The total tax assessed value of the parcel                                                                            |                                        | float64          |
 | `taxamount`                           | The total property tax assessed for that assessment year                                                                |                                        | float64          |
 | `sqft_room_ratio`                                        | The ratio of sqft to total number of bedrooms and bathrooms.                                                                                     |                                        | int64       |
-|'luxury_score'                | count of pool, car garagem bedrooms, bathrooms, aircondition | int64|
-|
-|
-|
-|
+|'luxury_score'                | count of pool, car garagem bedrooms, bathrooms, aircondition | | int64|
+|'luxury_sqft_per_age'| luxury score times sqft divided by age| | int64|
+|'age'                | 2017 - 'yearbuilt' | | int64|
+|'home_value_structure_tax_difference'                | 'home_value'-'structuretaxvaluedollarcnt' | | int64|
+|'taxrate'                | 'taxamount'/'home_value' | | int64|
+|'cost_per_sqft'               | 'homevalue'/'sqft' | | int64|
+|'sqft_room_ratio'                | 'sqft'/'number of beds and baths' | | int64|
+|'taxrate'                | 'taxamount'/'home_value' | | int64|
+|'taxrate'                | 'taxamount'/'home_value' | | int64|
+
+
 
 ___
 # <a name="workflow"></a>Workflow
